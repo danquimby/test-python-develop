@@ -37,15 +37,19 @@ class UserRequestModel(PhoneUserModel, CountryMixinModel):
     @validator("name")
     def name_validation(cls, v):
         regex = r"[а-яёА-ЯЁ -]"
-        if v and len(v) < 50 and not re.search(regex, v, re.I):
+        if v and not re.search(regex, v, re.I):
             raise ValueError("Только кирилица")
+        if v and len(v) > 50:
+            raise ValueError("50 символов максимум")
         return v
 
     @validator("surname")
     def surname_validation(cls, v):
         regex = r"[а-яёА-ЯЁ -]"
-        if v and len(v) < 50 and not re.search(regex, v, re.I):
+        if v and not re.search(regex, v, re.I):
             raise ValueError("Только кирилица")
+        if v and len(v) > 50:
+            raise ValueError("50 символов максимум")
         return v
 
     @validator("patronymic")
