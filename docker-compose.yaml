@@ -1,0 +1,28 @@
+version: '3.2'
+
+networks:
+  shared: {}
+
+services:
+  db:
+    image: "postgres:14-alpine"
+    container_name: bd
+    environment:
+      POSTGRES_PASSWORD: test
+      POSTGRES_USER: test
+      POSTGRES_DB: db_my_project
+      POSTGRES_HOST_AUTH_METHOD: trust
+    networks: [ 'shared' ]
+    ports:
+      - "5430:5432"
+  test_db:
+    image: "postgres:14-alpine"
+    container_name: test_bd
+    environment:
+      POSTGRES_PASSWORD: test
+      POSTGRES_USER: test
+      POSTGRES_DB: db_my_project_test
+      POSTGRES_HOST_AUTH_METHOD: trust
+    networks: [ 'shared' ]
+    ports:
+      - "5431:5432"

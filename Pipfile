@@ -1,0 +1,35 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = {version = "==0.74.*", extras = ["all"]}
+sqlalchemy = "==1.4.*"
+alembic = "==1.7.*"
+asyncpg = "==0.25.*"
+# linters
+black = "==22.3.*"
+flake8 = "==4.0.*"
+isort = "==5.10.*"
+# tests
+pytest = "==6.2.*"
+pytest-asyncio = "==0.18.*"
+uvicorn="*"
+loguru = "*"
+aiohttp = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
+
+[scripts]
+main = "python main.py"
+pytest = "python -m pytest ."
+makemigrations = "alembic -c alembic.ini revision --autogenerate -m"
+migrate = "alembic -c alembic.ini upgrade head"
+downgrade = "alembic downgrade "
+black = "black ."
+isort = "isort ."
+flake = "flake8 ."
