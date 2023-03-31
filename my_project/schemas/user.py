@@ -4,7 +4,7 @@ from typing import Optional
 from loguru import logger
 from pydantic import BaseModel, EmailStr, Field, validate_email, validator
 
-from my_project.procedures.countries import get_code_name
+from my_project.procedures.countries import dadata_service
 
 
 class PhoneUserModel(BaseModel):
@@ -24,7 +24,7 @@ class CountryMixinModel(BaseModel):
     code_name: Optional[str] = Field(description='Код страны')
 
     async def get_code_name(self):
-        result = await get_code_name(self.country)
+        result = await dadata_service.get_code_name(self.country)
         self.code_name = result
 
 
